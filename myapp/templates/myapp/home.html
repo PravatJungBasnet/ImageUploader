@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploader</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="div">
+            <h1 class="text-center my-4"> Uploaded Images</h1>
+           <hr>
+        </div>
+        <div class="row">
+            {% for image in img %}
+            <div class="col-sm-4 fw-bold">
+                <a href="#"><p>{{image.title}}</p></a>
+                <img src="{{ image.image.url }}" alt="" height="300" width="300" class="img-fluid img-thumbnail">
+              
+                <br>
+               
+                <br>
+                <p> <a href="{{image.image.url}}" class="btn btn-primary">Download Image</a>
+                </p>
+              
+               
+              
+            </div>
+    
+           
+            {% endfor %}
+        </div>
+            <hr>
+
+       
+        <div class="bg-secondary text-white my-4">
+            <h2 class="text-center "> If you want to upload Image here you can add</h2>
+        <form action="" method="post" enctype="multipart/form-data" class="ms-5 my-5"> 
+            {% csrf_token %}
+          {% for fom in form %}
+          {{fom.label_tag}}
+       {{fom}}
+       <br> <br>
+       
+        {% endfor %}
+        <input type="submit" value="Upload" class="btn btn-primary">  
+        <br>
+        <br>
+    </form>
+
+
+    </div>
+</div>
+    
+</body>
+</html>
